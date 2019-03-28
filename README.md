@@ -10,12 +10,10 @@ products:
 
 This repository contains content and samples in number of areas, including:
 
--   [Connect](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/connect) - Connect various data producers and consumers to or from the blockchain
--   [Integrate](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/integrate) - Integrate legacy tools, systems and protocols
--   [Accelerators](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/accelerators) - Deep dive into End-to-End examples, or solutions to common patterns.
--   [DevOps for smart contracts](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/devops) - Bring traditional DevOps practices into a distributed application environment
-
-To learn more about Azure Blockchain Workbench, please visit our [product page](https://aka.ms/workbenchdocs) and [documentation](http://azure.microsoft.com/en-us/features/blockchain-workbench).
+-   [Connect](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect) - Connect various data producers and consumers to or from the blockchain
+-   [Integrate](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate) - Integrate legacy tools, systems and protocols
+-   [Accelerators](https://github.com/Azure-Samples/blockchain-devkit/tree/master/accelerators) - Deep dive into End-to-End examples, or solutions to common patterns.
+-   [DevOps for smart contracts](https://github.com/Azure-Samples/blockchain-devkit/tree/master/devops) - Bring traditional DevOps practices into a distributed application environment
 
 
 ## Contents
