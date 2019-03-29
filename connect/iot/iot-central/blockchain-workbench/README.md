@@ -28,7 +28,7 @@ and contracts but can easily be adapted to other contracts by making
 changes to the configured alerts in Azure IoT Central and messages being
 pushed to Azure Blockchain Workbench.
 
-Sample Flow Table of Contents
+Sample Flow Table of Conten
 =============================
 
 This sample is complex and involves multiple steps. Below is a
