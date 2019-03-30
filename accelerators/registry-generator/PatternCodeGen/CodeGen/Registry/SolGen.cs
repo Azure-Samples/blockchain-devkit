@@ -36,7 +36,7 @@ namespace PatternCodeGen.CodeGen
             {
                 paramList.AddRange(whereResult.Select(prop => $"{underscore}{prop.PropertyName}"));
             }
-            
+
             return string.Join(", ", paramList);
         }
 
@@ -99,7 +99,7 @@ event LogUpdate{_ItemName} ({getPropertyCommaList(true, true, false, string.Empt
         private string IsRegisteredPropertyFunctions()
         {
             string codeString = string.Empty;
-            var properties = ((RegistryTemplate) inputJSON).Properties;
+            var properties = ((RegistryTemplate)inputJSON).Properties;
             foreach (var prop in properties)
             {
                 if (prop.IndexType != IndexType_t.PrimaryIndex && prop.IndexType != IndexType_t.Index) continue;
@@ -184,7 +184,7 @@ $@"    emit LogNew{_ItemName}(
                     RegisterItemFuncCallArgList += "_" + prop.PropertyName;
                 }
             }
-            codeString += "\n" + 
+            codeString += "\n" +
 $@"function Register{_ItemName}32({Func32ParamList}) 
 public
 {{
@@ -198,7 +198,7 @@ public
         {
             string codeString = string.Empty;
             string pType, convertion1, convertion2;
-            var properties = ((RegistryTemplate) inputJSON).Properties;
+            var properties = ((RegistryTemplate)inputJSON).Properties;
             foreach (var prop in properties)
             {
                 if (prop.IndexType != IndexType_t.PrimaryIndex && prop.IndexType != IndexType_t.Index
@@ -295,29 +295,7 @@ $@"pragma solidity ^0.5.2;
 import ""./{_ItemContractName}.sol"";
 
 
-contract WorkbenchBase {{
-    event WorkbenchContractCreated(string applicationName, string workflowName, address originatingAddress);
-    event WorkbenchContractUpdated(string applicationName, string workflowName, string action, address originatingAddress);
-
-    string internal ApplicationName;
-    string internal WorkflowName;
-
-    constructor(string memory applicationName, string memory workflowName) internal {{
-        ApplicationName = applicationName;
-        WorkflowName = workflowName;
-    }}
-
-    function ContractCreated() internal {{
-        emit WorkbenchContractCreated(ApplicationName, WorkflowName, msg.sender);
-    }}
-
-    function ContractUpdated(string memory action) internal {{
-        emit WorkbenchContractUpdated(ApplicationName, WorkflowName, action, msg.sender);
-    }}
-}}
-
-
-contract {_RegistryContracyName} is WorkbenchBase(""{_ApplicationName}"", ""{_RegistryContracyName}"") {{
+contract {_RegistryContracyName} {{
     enum StateType {{ Created, Open, Closed }}
     StateType public State;
 
@@ -391,7 +369,7 @@ $@"pragma solidity ^0.5.2;
 import ""./{_ApplicationName}.sol"";
 
 
-contract {_ItemContractName} is WorkbenchBase(""{_ApplicationName}"", ""{_ItemContractName}"") {{
+contract {_ItemContractName} {{
 
     // Registry
     {_RegistryContracyName} My{_ItemName}Registry;
@@ -553,7 +531,7 @@ $@"
             codeString +=
 $@"    ContractCreated();
 }}";
-            return addIndentation(codeString,1);
+            return addIndentation(codeString, 1);
         }
 
         private object RegisterItem()
