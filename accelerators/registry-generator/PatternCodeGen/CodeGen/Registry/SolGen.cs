@@ -161,7 +161,6 @@ $@",
 $@"    emit LogNew{_ItemName}(
 {addIndentation(propertyCommaListWithoutType, 3)}
     );
-    ContractUpdated(""Register{_ItemName}"");
 }}
 ";
             string Func32ParamList = string.Empty;
@@ -309,19 +308,16 @@ contract {_RegistryContracyName} {{
         Name = _Name;
         Description = _Description;
         State = StateType.Created;
-        ContractCreated();
     }}
 
     function OpenRegistry() public
     {{
         State = StateType.Open;
-        ContractUpdated(""OpenRegistry"");
     }}
 
     function CloseRegistry() public
     {{
         State = StateType.Closed;
-        ContractUpdated(""CloseRegistry"");
     }}
 
 {IsRegisteredPropertyFunctions()}
@@ -408,7 +404,6 @@ contract {_ItemContractName} {{
 function Retire(string memory retirementRecordedDateTime) public {{
     RetirementRecordedDateTime = retirementRecordedDateTime;
     State = StateType.Retired;
-    ContractUpdated(""Retire"");
 }}
 ";
             return addIndentation(codeString, 1);
@@ -448,7 +443,6 @@ function {funcName}({argList}) public {{
 
     {RegisterItem()}
     State = StateType.Active;
-    ContractUpdated(""{funcName}"");
 }}
 ";
             return addIndentation(codeString, 1);
@@ -463,7 +457,6 @@ function AssignRegistry(address _registryAddress) public
 {{
     if (RegistryAddress != address(0)) revert();
     RegistryAddress = _registryAddress;
-    ContractUpdated(""AssignRegistry"");
 }}";
             return addIndentation(output, 1);
         }
@@ -476,7 +469,6 @@ function AssignRegistry(address _registryAddress) public
 function AddMedia({Media_ConstructorParamList}) public
 {{
 {Media_VarAssignments}
-    ContractUpdated(""AddMedia"");
 }}";
             return addIndentation(output, 1);
         }
@@ -529,7 +521,7 @@ $@"
             }
 
             codeString +=
-$@"    ContractCreated();
+$@"
 }}";
             return addIndentation(codeString, 1);
         }
