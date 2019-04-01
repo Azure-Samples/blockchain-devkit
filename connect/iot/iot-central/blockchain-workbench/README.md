@@ -454,7 +454,7 @@ Workbench:
 8.  For DeviceID, use **DeviceID** found in the **When a rule is fired**
     section of **Dynamic content**.
 
-    ![](./media/CapturemessagePNG.png)
+    ![](./media/CapturemessagePNG.PNG)
 
 9.  Choose **Add an action** to add a new step.
 
@@ -464,7 +464,7 @@ Workbench:
 11. For **Content**, select **ResultSets** found in **Variables**
     section of **Dynamic content**.
 
-    ![](./media/image13.png){width="3.875in" height="5.78125in"}
+    ![](./media/image13.png)
 
 12. For **Schema**, copy and paste the following JSON:
 
