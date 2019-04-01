@@ -28,7 +28,7 @@ and contracts but can easily be adapted to other contracts by making
 changes to the configured alerts in Azure IoT Central and messages being
 pushed to Azure Blockchain Workbench.
 
-Sample Flow Table of Conten
+Sample Flow Table of Contents
 =============================
 
 This sample is complex and involves multiple steps. Below is a
@@ -438,7 +438,7 @@ Workbench:
     **Integer**. For **Value**, specify
     “ticks(triggerBody()\['timestamp'\])” under **Expression**.
 
-    ![](./media/image11.png){width="6.3125in" height="1.9375in"}
+    ![](./media/image11.png)
 
 4.  Choose **Add an action** to add a new step.
 
@@ -454,7 +454,7 @@ Workbench:
 8.  For DeviceID, use **DeviceID** found in the **When a rule is fired**
     section of **Dynamic content**.
 
-    ![](./media/image12.png)
+    ![](./media/CapturemessagePNG.png)
 
 9.  Choose **Add an action** to add a new step.
 
@@ -598,30 +598,47 @@ Workbench:
 
 }
 
+
+
+The next  3 steps in the flow will ensure we transform the variables values in a solidity valid format i.e. no floating-point number.
 1.  Choose **Add an action** to add a new step.
 
 2.  In **Search connectors and actions**, enter and select **Initialize
     variable**.
 
-3.  For **Name,** specify “RequestId.” For **Type**, specify **String**.
+3.  For **Name,** specify “RequestId” For **Type**, specify **String**.
     For **Value**, specify “guid()” under **Expression**.
 
-    ![](./media/image14.png)
 
-4.  Choose **Add an action** to add a new step.
+    ![](./media/capturevar.PNG)
 
-5.  In **Search connectors and actions**, enter and select **Apply to
+4.  In **Search connectors and actions**, enter and select **Initialize
+    variable**.
+
+
+5.  For **Name,** specify “HumidityInt” For **Type**, specify **Integer**.
+    For **Value**, specify “int(split(string(triggerBody()?['device']?['measurements']?['telemetry']?['Humidity']),'.')[0])” under **Expression**.
+
+6.  In **Search connectors and actions**, enter and select **Initialize
+    variable**.
+
+7.  For **Name,** specify “TermperatureInt” For **Type**, specify **Integer**.
+    For **Value**, specify “int(split(string(triggerBody()?['device']?['measurements']?['telemetry']?['Temperature']),'.')[0])” under **Expression**.
+
+8.  Choose **Add an action** to add a new step.
+
+9.  In **Search connectors and actions**, enter and select **Apply to
     each**.
 
-6.  For **Select an output from previous steps**, specify **Table1**
+10.  For **Select an output from previous steps**, specify **Table1**
     under **Parse JSON**.
 
-7.  Within **Apply to each** step, choose **Add** **an** **action**.
+11.  Within **Apply to each** step, choose **Add** **an** **action**.
 
-8.  In **Search connectors and actions**, enter **Service Bus** and
+12.  In **Search connectors and actions**, enter **Service Bus** and
     select **Send message**.
 
-9.  Specify the Service Bus action to connect and use the Service Bus
+13.  Specify the Service Bus action to connect and use the Service Bus
     resource deployed as part of Azure Blockchain Workbench. Note, when
     specifying the Service Bus connection string, make sure you use a
     policy with a **Manage** claim. To get the Service Bus connection
@@ -629,21 +646,22 @@ Workbench:
     Service Bus resource. Select the appropriate policy and copy the
     appropriate connection string.
 
-10. For **Queue/Topic name**, specify **activityhub (queue)**.
+14. For **Queue/Topic name**, specify **activityhub (queue)**.
 
-11. For **Session Id**, specify **RequestId** under **Variables** in
+15. For **Session Id**, specify **RequestId** under **Variables** in
     **Dynamic content**.
 
     ![](./media/image15.png)
 
-12. For **Content**, copy and paste the following JSON:
+16. For **Content**, copy and paste the following JSON:
 
 ``` json
 {
     "requestId": "",
     "userChainIdentifier": "",
     "contractLedgerIdentifier": "",
-    "workflowFunctionName": "modify",
+    "version":"1.0",
+    "workflowFunctionName": "ingestTelemetry",
     "Parameters": [
         {
             "name": "humidity",
@@ -658,7 +676,7 @@ Workbench:
             "value":
         }
     ],
-    "connectionId": 1,
+    "connectionId": "",
     "messageSchemaVersion": "1.0.0",
     "messageName": "CreateContractActionRequest"
 }
@@ -681,6 +699,8 @@ humidity - device.measurements.telemetry.Humidity
 temperature- device.measurements.telemetry.Temperature
 
 timestamp - TimstampInt
+
+connectionId - ConnectionIId
 
 
     
