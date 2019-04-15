@@ -13,7 +13,7 @@ IoT Hub
 --------
 __Capturing and communicating sensor data from devices with IoT Hub and blockchain__
 
-[Azure Blockchain Workbench Sample](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/connect/iot/iot-hub/blockchain-workbench)
+[Azure Blockchain Workbench Sample](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/iot/iot-hub/blockchain-workbench)
 
 Ethereum Blockchain Connector for Logic Apps (Coming Soon)
 
@@ -24,7 +24,7 @@ IoT Central
 -----------
 __Capturing and communicating sensor data from devices with IoT Hub and blockchain__
 
-[Azure Blockchain Workbench Sample](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/connect/iot/iot-central/blockchain-workbench)
+[Azure Blockchain Workbench Sample](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/iot/iot-central/blockchain-workbench)
 
 Ethereum Blockchain Connector for Logic Apps (Coming Soon)
 
