@@ -1,4 +1,4 @@
-[Attestable Documents and Media Accelerator](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/accelerators/attestable-documents-and-media/blockchain-workbench)
+[Attestable Documents and Media Accelerator](https://github.com/Azure-Samples/blockchain-devkit/tree/master/accelerators/attestable-documents-and-media/blockchain-workbench)
 ===========================================
 There are multiple scenarios where having attestable documents and media is valuable. 
 Media doesn’t belong on the blockchain, but hashes of the media plus the media + metadata should be.  
@@ -12,25 +12,25 @@ The general flow of the samples is -
 - Code also hashes the meta-data about the file
 - The Logic App sends the hashes to the constructor of a File smart contract which registers itself to a File Registry contract.
 
-The smart contracts for the accelerator can be found [here](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/accelerators/attestable-documents-and-media/blockchain-workbench/smart-contracts)
+The smart contracts for the accelerator can be found [here](https://github.com/Azure-Samples/blockchain-devkit/tree/master/accelerators/attestable-documents-and-media/blockchain-workbench/smart-contracts)
 
 Azure Blockchain Workbench Samples
 ----------------------------------
-[Adobe Creative Cloud](https://github.com/Azure-Samples/blockchain/blob/master/blockchain-development-kit/accelerators/attestable-documents-and-media/blockchain-workbench/AdobeCreativeCloud/README.md)
+[Adobe Creative Cloud](https://github.com/Azure-Samples/blockchain-devkit/tree/master/accelerators/attestable-documents-and-media/blockchain-workbench/AdobeCreativeCloud/README.md)
 
-[Azure Storage](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/accelerators/attestable-documents-and-media/blockchain-workbench/azure-blob-storage)
+[Azure Storage](https://github.com/Azure-Samples/blockchain-devkit/tree/master/accelerators/attestable-documents-and-media/blockchain-workbench/azure-blob-storage)
 
-[Box](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/accelerators/attestable-documents-and-media/blockchain-workbench/box)
+[Box](hhttps://github.com/Azure-Samples/blockchain-devkit/tree/master/accelerators/attestable-documents-and-media/blockchain-workbench/box)
 
-[FTP](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/accelerators/attestable-documents-and-media/blockchain-workbench/ftp)
+[FTP](https://github.com/Azure-Samples/blockchain-devkit/tree/master/accelerators/attestable-documents-and-media/blockchain-workbench/ftp)
 
-[Google Drive](https://github.com/Azure-Samples/blockchain/blob/master/blockchain-development-kit/accelerators/attestable-documents-and-media/blockchain-workbench/google/README.md)
+[Google Drive](https://github.com/Azure-Samples/blockchain-devkit/tree/master/accelerators/attestable-documents-and-media/blockchain-workbench/google/README.md)
 
-[OneDrive](https://github.com/Azure-Samples/blockchain/blob/master/blockchain-development-kit/accelerators/attestable-documents-and-media/blockchain-workbench/onedrive/README.md)
+[OneDrive](https://github.com/Azure-Samples/blockchain-devkit/tree/master/accelerators/attestable-documents-and-media/blockchain-workbench/onedrive/README.md)
 
-[One Drive for Business](https://github.com/Azure-Samples/blockchain/blob/master/blockchain-development-kit/accelerators/attestable-documents-and-media/blockchain-workbench/onedrive-for-business/README.md)
+[One Drive for Business](https://github.com/Azure-Samples/blockchain-devkit/tree/master/accelerators/attestable-documents-and-media/blockchain-workbench/onedrive-for-business/README.md)
 
-[SharePoint](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/accelerators/attestable-documents-and-media/blockchain-workbench/sharepoint)
+[SharePoint](https://github.com/Azure-Samples/blockchain-devkit/tree/master/accelerators/attestable-documents-and-media/blockchain-workbench/sharepoint)
 
 Ethereum Blockchain Connector for Logic Apps Samples
 -----------------------------------------------------

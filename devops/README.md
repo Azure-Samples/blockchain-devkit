@@ -47,12 +47,12 @@ Common questions include –
 While there are some nuances to the approach, the good news is that just like
 other types of solution development, this model can readily be addressed in a
 DevOps model. Today, we’re announcing the release of the whitepaper, “[DevOps
-for Blockchain Smart Contracts](https://github.com/Azure-Samples/blockchain/blob/master/blockchain-development-kit/devops/DevOps%20for%20Blockchain%20Smart%20Contracts.pdf).”
+for Blockchain Smart Contracts](https://github.com/Azure-Samples/blockchain-devkit/tree/master/devops/DevOps%20for%20Blockchain%20Smart%20Contracts.pdf).”
 
 ![](media/3a3cb957a3837b963f35b032276a1a79.png)
 
 Complementing the whitepaper is an [implementation
-guide](https://github.com/Azure-Samples/blockchain/blob/master/blockchain-development-kit/devops/DevOps%20for%20Blockchain%20Smart%20Contracts%20-%20Implementation%20Guide.pdf), available through the Azure Blockchain
+guide](https://github.com/Azure-Samples/blockchain-devkit/tree/master/devops/DevOps%20for%20Blockchain%20Smart%20Contracts%20-%20Implementation%20Guide.pdf), available through the Azure Blockchain
 Development Kit, that shows how to implement CI/CD for smart contracts and
 infrastructure as code using Visual Studio Code, GitHub, Azure DevOps and OSS
 from [Truffle](https://www.truffleframework.com/).
