@@ -14,7 +14,7 @@ these are blocking calls using REST over HTTP. Replies with results on the "egre
 queue. 
 
 The basic integration pattern is shown below 
-![CordaAndWorkbench](images/CordaIntegrationtoMicrosoftAzureServices%20.pdf)
+![CordaAndWorkbench](C:\blockchain\blockchain-devkit\blockchain-devkit\accelerators\corda\service-bus-integration\docs\images\IntegrationPattern.png)
 
  
 
@@ -27,6 +27,7 @@ _This component is still in development_
 Provides a thin abstraction layer that isolates other components from 
 the actual topology and management of a Corda network. A full implementation
 will include:
+
 * creating new standalone test networks on Azure
 * deploying cordapps
 * connecting to existing networks
@@ -45,6 +46,7 @@ Essentially a prebuilt image that
      * deploy new CorDaApps across the nodes
      * basic network wide admin (stop/start/status)
      
+
 We plan to use the [Network Bootstrapper Tool](https://github.com/corda/corda/tree/master/tools/network-bootstrapper) for the initial implementation. 
 
 Node state will be stored in local databases (i.e. will be lost after full restarts). As WB observers 

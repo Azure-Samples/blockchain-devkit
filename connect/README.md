@@ -20,14 +20,14 @@ This section of the development kit provides samples on how to deliver these int
 
 Sample Categories
 -----------------
-[SMS](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/connect/sms)
+[SMS](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/sms)
 
-[Voice Samples](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/connect/ivr)
+[Voice Samples](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/ivr)
 
-[IoT Samples](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/connect/iot)
+[IoT Samples](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/iot)
 
-[Mobile Samples](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/connect/mobile)
+[Mobile Samples](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/mobile)
 
-[Bots and Assistants](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/connect/bots-and-assistants)
+[Bots and Assistants](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/bots-and-assistants)
 
-[Web](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/connect/web)
+[Web](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/web)
