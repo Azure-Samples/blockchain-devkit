@@ -11,12 +11,12 @@ __Two way communication between a party and the chain__.  This is a combination 
 
 Inbound SMS (Phone to Blockchain)
 ==================================
-[Azure Blockchain Workbench Sample](https://github.com/Azure-Samples/blockchain/blob/master/blockchain-development-kit/connect/sms/inbound/README.md)
+[Azure Blockchain Workbench Sample](https://github.com/Azure-Samples/blockchain-devkit/blob/master/connect/sms/inbound/README.md)
 Ethereum Blockchain Connector for Logic Apps Sample (Coming Soon)
 Corda Ledger Connector for Logic Apps Sample (Coming Soon)
 
 Outbound SMS
 ============
-[Azure Blockchain Workbench Sample](https://github.com/Azure-Samples/blockchain/blob/master/blockchain-development-kit/connect/sms/outbound/README.md)
+[Azure Blockchain Workbench Sample](https://github.com/Azure-Samples/blockchain-devkit/blob/master/connect/sms/outbound/README.md)
 Ethereum Blockchain Connector for Logic Apps Sample (Coming Soon)
 Corda Ledger Connector for Logic Apps Sample (Coming Soon)

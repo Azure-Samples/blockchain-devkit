@@ -5,13 +5,13 @@ In certain scenarios, the best way to connect with a participant in a transactio
 
 This section includes samples for integrated voice response (IVR). 
 
-Samples related to bots and assistants (Alexa, Cortana, etc.) can be found [here](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/connect/bots-and-assistants).
+Samples related to bots and assistants (Alexa, Cortana, etc.) can be found [here](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/bots-and-assistants).
 
 Samples
 =======
 This sample uses voice to interact with the simple marketplace sample application.
 
-[Azure Blockchain Workbench Sample](https://github.com/Azure-Samples/blockchain/blob/master/blockchain-development-kit/connect/ivr/WorkbenchVoiceSample.md)
+[Azure Blockchain Workbench Sample](https://github.com/Azure-Samples/blockchain-devkit/blob/master/connect/ivr/WorkbenchVoiceSample.md)
 
 Ethereum Blockchain Connector for Logic Apps Sample (Coming Soon)
 

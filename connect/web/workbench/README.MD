@@ -11,4 +11,4 @@ Often those questions around how to visualize provenance data or build new inter
 
 This initial UX sample showcases both in a React.JS application, inclusive of connecting to the Azure Blockchain Workbench API.
 
-[Azure Blockchain Workbench Sample](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/connect/web/workbench/custom-ux-sample)
+[Azure Blockchain Workbench Sample](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/web/workbench/custom-ux-sample)

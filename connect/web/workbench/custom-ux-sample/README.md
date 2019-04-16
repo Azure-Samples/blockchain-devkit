@@ -23,7 +23,7 @@ will serve this application to consumers.
 This sample is designed to showcase an application built for a specific smart
 contract. Within Azure Blockchain Workbench, log in as an administrator and
 upload the smart contract and configuration file located
-[here](https://github.com/Azure-Samples/blockchain/tree/master/blockchain-development-kit/connect/web/workbench/custom-ux-sample/smart_contracts).
+[here](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/web/workbench/custom-ux-sample/smart_contracts).
 
 - From a command prompt, install NPM modules from the directory that contains the
 package.json file:
