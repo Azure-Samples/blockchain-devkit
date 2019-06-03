@@ -20,7 +20,7 @@ Getting blockchain off the whiteboard and into production means dealing with the
 Microsoft brings our decades of experience in this area to blockchain. Our work with integrating Enterprise systems began almost two decades ago with the introduction of BizTalk server, and our focus on database integration traces back to our co-development of Open Database Connectivity (ODBC) in the 1990s. All of our experience has been captured and made available in Azure services. This includes 200+ connectors available in Logic Apps and Flow, and the robust capabilities in our data platform.
 
 # Documents and Media
-Documents and mecd dia do not belong on chain, but business processes often involve images, videos, audio, Office documents, CAD files for 3D printers or other file types.
+Documents and media do not belong on chain, but business processes often involve images, videos, audio, Office documents, CAD files for 3D printers or other file types.
 
 The common pattern is to generate a unique hash of the media and the metadata that describes it. Those hashes are then placed on a public or private chain. If authenticity of a file is ever questioned, the “off chain” files can be re-hashed at a later time and that hash is compared to the “on chain” hash stored on the blockchain. If the hashes match, the document is authentic, but if so much as a pixel of an image or letter in a document is changed, the hashes will not match and this will make obvious that tampering has occurred.
 
