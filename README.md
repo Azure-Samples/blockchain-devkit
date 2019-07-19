@@ -1,8 +1,14 @@
 ---
-topic: overview
+page_type: sample
+languages:
+  - csharp
+  - java
+  - javascript
+  - html
 products:
   - azure
-  - azure-blockchain	
+  - azure-blockchain-service
+description: "This sample contains content and samples in number of areas, including connecting data producers and consumers to the or from the blockchain."
 ---
 
 ![Azure Blockchain Devkit MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
