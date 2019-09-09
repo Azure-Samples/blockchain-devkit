@@ -4,12 +4,18 @@ languages:
   - sql
 products:
   - azure
-  - azure-blockchain	
+  - azure-blockchain-service	
 ---
 
 # Add SQL data to an Ethereum ledger using the Ethereum Logic App Connector
 
 ![Flask sample MIT license badge](https://img.shields.io/badge/license-MIT-green.svg)
+
+| Featured Azure Services                                      |
+| ------------------------------------------------------------ |
+| ![](./media/blockchain-service.svg) [Azure Blockchain Service](https://azure.microsoft.com/en-us/services/blockchain-service/) |
+| ![](./media/Azure_Logic_Apps_COLOR_(50x50).png) [Azure Logic Apps](https://azure.microsoft.com/en-us/services/logic-apps/) |
+| ![](./media/Azure_SQL_Database_(generic)_COLOR_(50x50).png) [Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) |
 
 This sample shows you how to take SQL data from a SQL table and create a new contract on the Ethereum blockchain ledger based on the table data. Once created we also show how to update the SQL table with the contract address for recordkeeping purposes. 
 
