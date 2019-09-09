@@ -5,13 +5,20 @@ languages:
   - rest
 products:
   - azure
-  - azure-blockchain	
+  - azure-blockchain-service	
 
 ---
 
 # Add Ethereum ledger data to Azure Search using the Ethereum Logic App Connector
 
 ![license badge](https://img.shields.io/badge/license-MIT-green.svg)
+
+| Featured Azure Services                                      |
+| ------------------------------------------------------------ |
+| ![](./media/blockchain-service.svg) [Azure Blockchain Service](https://azure.microsoft.com/en-us/services/blockchain-service/) |
+| ![](./media/Azure_Logic_Apps_COLOR_(50x50).png) [Azure Logic Apps](https://azure.microsoft.com/en-us/services/logic-apps/) |
+| ![](./media/Azure_Search_COLOR_(50x50).png) [Azure Search](https://azure.microsoft.com/en-us/services/search/) |
+| ![](./media/Azure_SQL_Database_(generic)_COLOR_(50x50).png) [Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) |
 
 This sample shows you how to take ledger data from an Ethereum ledger and add that information to Azure Search. This allows ledger data to be available to a broad range of Enterprise applications, as well as allow for unstructured searching of contract data from users. 
 
