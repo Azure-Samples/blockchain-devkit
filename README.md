@@ -52,12 +52,9 @@ Looking for a sample based on a particular service or technology (e.g., using SQ
 | ![](./media/Azure_MySQL_ClearDB_database_COLOR_(50x50).png)[Azure Database for MySQL](https://azure.microsoft.com/en-us/services/mysql/) | [Azure Blockchain Workbench and MySQL](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/mysql) |
 | <img src="./media/Postgres-service.svg" style="zoom: 125%;" />[Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/services/postgresql/) | [Blockchain and PostgreSQL](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/postgresql) |
 | ![](./media/Azure_Search_COLOR_(50x50).png)[Azure Cognitive Search](https://azure.microsoft.com/en-us/services/search/) | [Azure Blockchain and Azure Cognitive Search](https://github.com/Azure-Samples/blockchain-devkit/blob/master/integrate/data/azure-search/EthereumLogicAppAzureSearch.md) |
-| ![](./media/Azure_SQL_Database_(generic)_COLOR_(50x50).png)[Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) | [Azure Blockchain and SQL](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/sql
-) |
-| ![](./media/PowerBI.svg) [Power BI](https://powerbi.microsoft.com/en-us/) | [Azure Blockchain Workbench and Power BI](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/powerbi
-) |
-| ![](./media/Xamarin.svg)[Xamarin](https://dotnet.microsoft.com/apps/xamarin) | [Azure Blockchain Workbench and mobile apps with Xamarin](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/mobile/blockchain-workbench/workbench-client
-) |
+| ![](./media/Azure_SQL_Database_(generic)_COLOR_(50x50).png)[Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) | [Azure Blockchain and SQL](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/sql) |
+| ![](./media/PowerBI.svg) [Power BI](https://powerbi.microsoft.com/en-us/) | [Azure Blockchain Workbench and Power BI](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/powerbi) |
+| ![](./media/Xamarin.svg)[Xamarin](https://dotnet.microsoft.com/apps/xamarin) | [Azure Blockchain Workbench and mobile apps with Xamarin](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/mobile/blockchain-workbench/workbench-client) |
 
 
 
