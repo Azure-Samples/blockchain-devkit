@@ -38,7 +38,7 @@ This sample uses the Ethereum and the SQL Server Logic App Connectors available 
 
 ## Prerequisites
 
-- A public Ethereum RPC endpoint - you may create one from Azure here
+- A public Ethereum RPC endpoint - you may create one from Azure [here](https://azure.microsoft.com/en-us/services/blockchain-service/)
 - An [Azure SQL database](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-technical-overview) - you only need a single database
 - An Ethereum contract. This sample is based on the  `BasicProvenance` contract included in the `contract` directory located on the root of this sample
 

@@ -22,7 +22,7 @@ This repository contains content and samples in number of areas, including:
 -   [DevOps for smart contracts](https://github.com/Azure-Samples/blockchain-devkit/tree/master/devops) - Bring traditional DevOps practices into a distributed application environment
 
 
-## Contents
+## Repo Contents
 
 | File/folder       | Description                                                  |
 | ----------------- | ------------------------------------------------------------ |
@@ -35,7 +35,36 @@ This repository contains content and samples in number of areas, including:
 | `CONTRIBUTING.md` | Guidelines for contributing to the Azure Blockchain Devkit   |
 | `README.md`       | This README file                                             |
 | `LICENSE`         | The license for the Azure Development Kit samples            |
+## Sample Index
+
+Looking for a sample based on a particular service or technology (e.g., using SQL with Blockchain)? The index below will give you pointers to samples based on the technology/service featured. These are a select subset of the total samples available. 
+
+| Technology or Service                                        | Samples                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![](./media/blockchain-service.svg)[Azure Blockchain Service](https://azure.microsoft.com/en-us/services/blockchain-service/) | [Azure Blockchain and Azure Cognitive Search](https://github.com/Azure-Samples/blockchain-devkit/blob/master/integrate/data/azure-search/EthereumLogicAppAzureSearch.md)<br>[Azure Blockchain and SQL](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/sql
+) |
+| ![](./media/BlockchainWorkbenchColor_48x48.svg)[Azure Blockchain Workbench](https://azure.microsoft.com/en-us/features/blockchain-workbench/) | [Azure Blockchain Workbench and MySQL](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/mysql)<br>[Azure Blockchain Workbench and Cosmos DB](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/cosmosdb)<br>[Azure Blockchain Workbench with Power BI]()<br>[Deliver data from IoT Hub to Azure Blockchain Workbench](https://github.com/Azure-Samples/blockchain-devkit/blob/master/connect/iot/iot-hub/blockchain-workbench/ConfigureIoTDemo.md)<br>[Azure IoT Central and Azure Blockchain Workbench Integration](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/iot/iot-central/blockchain-workbench)<br>[Azure Blockchain Workbench and mobile apps with Xamarin](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/mobile/blockchain-workbench/workbench-client<br/>) |
+| ![](./media/BotService.svg)[Azure Bot Service](https://azure.microsoft.com/en-us/services/bot-service/) | [Azure Blockchain Workbench and Azure Bot Service](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/bots-and-assistants/web/botservice
+) |
+| ![](./media/CosmosDB.svg)[Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) | [Azure Blockchain Workbench and Cosmos DB](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/cosmosdb) |
+| ![](./media/Azure_Functions_COLOR_LARGE_(50x50).png)[Azure Functions](https://azure.microsoft.com/en-us/services/functions/) | [Attestable documents and media: Using Azure Functions to hash file contents and metadata](https://github.com/Azure-Samples/blockchain-devkit/blob/master/accelerators/attestable-documents-and-media/blockchain-workbench/AdobeCreativeCloud/README.md) |
+| ![](./media/AzureIoTCentral.svg)[Azure IoT Central](https://azure.microsoft.com/en-us/services/iot-central/) | [Azure IoT Central and Azure Blockchain Workbench Integration](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/iot/iot-central/blockchain-workbench) |
+| ![](./media/Azure_Io_T_Hub_(50x50).png)[Azure IoT Hub](https://azure.microsoft.com/en-us/services/iot-hub/) | [Deliver data from IoT Hub to Azure Blockchain Workbench](https://github.com/Azure-Samples/blockchain-devkit/blob/master/connect/iot/iot-hub/blockchain-workbench/ConfigureIoTDemo.md) |
+| ![](./media/Azure_Logic_Apps_COLOR_(50x50).png)[Azure Logic Apps](https://azure.microsoft.com/en-us/services/logic-apps/) | [Egress: Using Ethereum Logic App connector to capture events from the blockchain](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/postgresql)<br>[Ingress: Using Ethereum Logic App connector to  create/updates contracts on the blockchain](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/sql) |
+| ![](./media/Azure_MySQL_ClearDB_database_COLOR_(50x50).png)[Azure Database for MySQL](https://azure.microsoft.com/en-us/services/mysql/) | [Azure Blockchain Workbench and MySQL](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/mysql) |
+| <img src="./media/Postgres-service.svg" style="zoom: 125%;" />[Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/services/postgresql/) | [Blockchain and PostgreSQL](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/postgresql) |
+| ![](./media/Azure_Search_COLOR_(50x50).png)[Azure Cognitive Search](https://azure.microsoft.com/en-us/services/search/) | [Azure Blockchain and Azure Cognitive Search](https://github.com/Azure-Samples/blockchain-devkit/blob/master/integrate/data/azure-search/EthereumLogicAppAzureSearch.md) |
+| ![](./media/Azure_SQL_Database_(generic)_COLOR_(50x50).png)[Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) | [Azure Blockchain and SQL](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/sql
+) |
+| ![](./media/PowerBI.svg) [Power BI](https://powerbi.microsoft.com/en-us/) | [Azure Blockchain Workbench and Power BI](https://github.com/Azure-Samples/blockchain-devkit/tree/master/integrate/data/powerbi
+) |
+| ![](./media/Xamarin.svg)[Xamarin](https://dotnet.microsoft.com/apps/xamarin) | [Azure Blockchain Workbench and mobile apps with Xamarin](https://github.com/Azure-Samples/blockchain-devkit/tree/master/connect/mobile/blockchain-workbench/workbench-client
+) |
+
+
+
 ## Prerequisites
+
 - Where noted, some of the samples in this development kit may need the following
 
   - [Azure Blockchain Workbench](https://docs.microsoft.com/en-us/azure/blockchain/workbench/deploy#deploy-blockchain-workbench)
