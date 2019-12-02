@@ -37,7 +37,9 @@ This repository contains content and samples in number of areas, including:
 | `LICENSE`         | The license for the Azure Development Kit samples            |
 ## Sample Index
 
-Looking for a sample based on a particular service or technology (e.g., using SQL with Blockchain)? The index below will give you pointers to samples based on the technology/service featured. These are a select subset of the total samples available. 
+Looking for a sample based on a particular service or technology (e.g., using SQL with Blockchain)? 
+
+The index below will give you pointers to samples based on the technology/service featured. These are a select subset of the total samples available. 
 
 | Technology or Service                                        | Samples                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
