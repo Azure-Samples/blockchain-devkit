@@ -11,7 +11,7 @@
     "history": "^4.7.2",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
-    "office-ui-fabric-react": "5.83.0",
+    "office-ui-fabric-react": "7.0.2",
     "promise": "^8.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
