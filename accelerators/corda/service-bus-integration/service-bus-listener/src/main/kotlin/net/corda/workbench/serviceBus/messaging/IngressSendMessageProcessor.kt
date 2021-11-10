@@ -1,7 +1,7 @@
 package net.corda.workbench.serviceBus.messaging
 
-import com.microsoft.azure.servicebus.IMessage
-import com.microsoft.azure.servicebus.IQueueClient
+import com.azure.messaging.servicebus.ServiceBusMessage
+import com.azure.messaging.servicebus.ServiceBusSenderClient
 import net.corda.workbench.commons.registry.Registry
 import net.corda.workbench.serviceBus.cordaTransactionBuilder.CordaLocation
 import net.corda.workbench.serviceBus.cordaTransactionBuilder.TransactionBuilderClient
@@ -19,10 +19,10 @@ import java.nio.charset.StandardCharsets.UTF_8
  * be incorrectly reported as timed out / failed.
  *
  */
-class IngressMessageProcessor(val registry: Registry, val msg: IMessage, val returnQueue: IQueueClient) : Runnable {
+class IngressSendMessageProcessor(val registry: Registry, val msg: ServiceBusMessage, val returnQueue: ServiceBusSenderClient) : Runnable {
 
     companion object {
-        private val logger: Logger = LoggerFactory.getLogger(IngressMessageProcessor::class.java)
+        private val logger: Logger = LoggerFactory.getLogger(IngressSendMessageProcessor::class.java)
     }
 
     override fun run() {
@@ -34,7 +34,7 @@ class IngressMessageProcessor(val registry: Registry, val msg: IMessage, val ret
         }
     }
 
-    private fun process(msg: IMessage) {
+    private fun process(msg: ServiceBusMessage) {
         val responder = Responder(returnQueue)
 
         if (msg.contentType == "application/json") {
@@ -109,10 +109,10 @@ class IngressMessageProcessor(val registry: Registry, val msg: IMessage, val ret
         return CordaLocation(network.toString(), cordapp, node)
     }
 
-    private fun extractMessageData(msg: IMessage): MessageData {
+    private fun extractMessageData(msg: ServiceBusMessage): MessageData {
 
         val body = msg.body
-        val bodyText = String(body, UTF_8)
+        val bodyText = String(body.toBytes(), UTF_8)
 
         val data = JSONObject(bodyText).toMap()
 

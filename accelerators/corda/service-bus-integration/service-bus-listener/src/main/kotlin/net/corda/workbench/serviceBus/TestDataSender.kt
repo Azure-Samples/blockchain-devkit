@@ -1,7 +1,7 @@
 package net.corda.workbench.serviceBus
 
-import com.microsoft.azure.servicebus.Message
-import com.microsoft.azure.servicebus.QueueClient
+import com.azure.messaging.servicebus.ServiceBusMessage
+import com.azure.messaging.servicebus.ServiceBusSenderClient
 import com.typesafe.config.ConfigFactory
 import net.corda.workbench.commons.registry.Registry
 import net.corda.workbench.serviceBus.messaging.AzureConfig
@@ -14,7 +14,7 @@ import java.util.*
 /**
  * Build test data and sends to a queue
  */
-class TestDataSender(val queueClient: QueueClient) {
+class TestDataSender(val queueClient: ServiceBusSenderClient) {
 
     fun sendTransaction(cordapp: String, dataset: String) {
 
@@ -27,7 +27,7 @@ class TestDataSender(val queueClient: QueueClient) {
     }
 
 
-    fun sendMessages(sendClient: QueueClient, cordapp: String, dataset: String, linearId : UUID) {
+    fun sendMessages(sendClient: ServiceBusSenderClient, cordapp: String, dataset: String, linearId : UUID) {
 
         var firstMessage = true
         val directory = "src/test/resources/datasets/$cordapp/$dataset/ingress"
@@ -46,12 +46,11 @@ class TestDataSender(val queueClient: QueueClient) {
                 val messageId = UUID.randomUUID().toString()
                 val message = Message(content)
                 message.contentType = "application/json"
-                message.label = "Corda"
                 message.messageId = messageId
                 message.timeToLive = Duration.ofHours(1)
                 print(".")
 
-                sendClient.send(message)
+                sendClient.sendMessage(message)
                 println(".done")
 
                 if (firstMessage) {

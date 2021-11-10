@@ -1,7 +1,7 @@
 package net.corda.workbench.serviceBus.messaging
 
-import com.microsoft.azure.servicebus.IQueueClient
-import com.microsoft.azure.servicebus.Message
+import com.azure.messaging.servicebus.ServiceBusMessage
+import com.azure.messaging.servicebus.ServiceBusSenderClient
 import org.json.JSONObject
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -13,13 +13,32 @@ import kotlin.collections.HashMap
 /**
  * Generates "fire and forget" message to the egress queue
  */
-class Responder(val returnQueue: IQueueClient) {
+class Responder(val returnQueue: ServiceBusSenderClient) {
 
     companion object {
         private val logger: Logger = LoggerFactory.getLogger(Responder::class.java)
     }
 
-    fun createContractUpdate(status: String, messageData: IngressMessageProcessor.MessageData, errorMessage: String? = null) {
+    fun createContractUpdate(status: String, messageData: IngressSendMessageProcessor.MessageData, errorMessage: String? = null) {
+        try {
+            val msgType = if (messageData.isCreateMessage) "CreateContractUpdate" else "CreateContractActionUpdate"
+            val msg = HashMap(baseMessage(msgType))
+            msg["requestId"] = messageData.requestId
+            msg["contractId"] = messageData.contractId
+            msg["contractLedgerIdentifier"] = messageData.linearId
+            msg["status"] = status
+            if (errorMessage != null) {
+                msg["additionalInformation"] = mapOf("errorMessage" to errorMessage)
+            }
+            sendMessage(msg)
+        } catch (ex: Exception) {
+            // todo - should there be retry logic here is queue is unavailable and so on
+            logger.warn("Exception sending createContractUpdate for ${messageData.linearId}", ex)
+        }
+
+    }
+
+    fun createContractUpdate(status: String, messageData: IngressReceiveMessageProcessor.MessageData, errorMessage: String? = null) {
         try {
             val msgType = if (messageData.isCreateMessage) "CreateContractUpdate" else "CreateContractActionUpdate"
             val msg = HashMap(baseMessage(msgType))
@@ -43,12 +62,11 @@ class Responder(val returnQueue: IQueueClient) {
         val msgText = JSONObject(msg, true).toString(2)
         val message = Message(msgText)
         message.contentType = "application/json"
-        message.label = "Corda"
         message.messageId = messageId
         message.timeToLive = Duration.ofHours(1)
 
         logger.debug("sending message: $msgText")
-        returnQueue.send(message)
+        returnQueue.sendMessage(message)
     }
 
 
@@ -60,7 +78,26 @@ class Responder(val returnQueue: IQueueClient) {
 
     }
 
-    fun createContractMessage(flowResult: Map<String, Any?>, messageData: IngressMessageProcessor.MessageData) {
+    fun createContractMessage(flowResult: Map<String, Any?>, messageData: IngressSendMessageProcessor.MessageData) {
+        try {
+            val msg = HashMap(baseMessage("ContractMessage"))
+            msg["blockId"] = 999
+            msg["blockhash"] = flowResult["txnHash"] as String
+            msg["modifyingTransactions"] = buildModifyingTransactions(flowResult)
+            msg["contractId"] = messageData.contractId
+            msg["contractLedgerIdentifier"] = messageData.linearId
+            msg["contractProperties"] = buildContractProperties(flowResult)
+            msg["isNewContract"] = messageData.isCreateMessage
+
+            sendMessage(msg)
+
+        } catch (ex: Exception) {
+            println("problem with createContractMessage()")
+            ex.printStackTrace()
+        }
+    }
+
+    fun createContractMessage(flowResult: Map<String, Any?>, messageData: IngressReceiveMessageProcessor.MessageData) {
         try {
             val msg = HashMap(baseMessage("ContractMessage"))
             msg["blockId"] = 999

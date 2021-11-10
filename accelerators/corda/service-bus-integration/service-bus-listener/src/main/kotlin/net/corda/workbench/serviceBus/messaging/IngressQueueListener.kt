@@ -1,6 +1,6 @@
 package net.corda.workbench.serviceBus.messaging
 
-import com.microsoft.azure.servicebus.IMessageReceiver
+import com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient
 import java.util.concurrent.CompletableFuture
 import com.typesafe.config.ConfigFactory
 import net.corda.workbench.commons.registry.Registry
@@ -19,7 +19,7 @@ class Listener(private val registry: Registry) {
         receiveMessagesAsync(receiver, factory, executor)
     }
 
-    fun receiveMessagesAsync(receiver: IMessageReceiver, factory: MessageProcessorFactory, executor: ExecutorService): CompletableFuture<*> {
+    fun receiveMessagesAsync(receiver: ServiceBusReceiverAsyncClient, factory: MessageProcessorFactory, executor: ExecutorService): CompletableFuture<*> {
 
         val task: CompletableFuture<Any> = CompletableFuture()
 
@@ -27,8 +27,7 @@ class Listener(private val registry: Registry) {
             CompletableFuture.runAsync {
                 while (!task.isCancelled) {
                     try {
-                        val message = receiver.receive()
-                        if (message != null) {
+                        for (message in receiver.receiveMessages().collectList().block()) {
                             println("RECEIVED $message")
 
                             val processor = factory.createProcessor(message)
@@ -40,7 +39,7 @@ class Listener(private val registry: Registry) {
 
                             // respond back to the Azure queue - this message has now been accepted
                             // for processing, and responses will come back on the egress queue
-                            receiver.completeAsync(message.lockToken)
+                            receiver.complete(message).block()
 
                             // No reason to do anything with the result ?
                             //result.get()

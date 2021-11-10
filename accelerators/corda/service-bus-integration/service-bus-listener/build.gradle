@@ -84,7 +84,9 @@ dependencies {
     testCompile ('org.junit.platform:junit-platform-runner:1.0.0')
 
     //compile group: 'org.json', name: 'json', version: '20180130'
-    compile 'com.microsoft.azure:azure-servicebus:1.2.8'
+    compile 'com.azure:azure-messaging-servicebus:7.4.2'
+
+    compile 'com.azure:azure-core:1.22.0'
 
     compile 'org.bouncycastle:bcpkix-jdk15on:1.53'
 
