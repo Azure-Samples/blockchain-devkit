@@ -11,16 +11,14 @@ import java.nio.charset.StandardCharsets
 fun main(args: Array<String>) {
     val conf = ConfigFactory.load()
     val registry = Registry().store(AzureConfig(conf))
-    val receiver = Connection(registry).egressQueueReceiver()
+    val receiver = Connection(registry).egressReceiverClient()
 
     while(true){
-        val msg = receiver.receive()
-
-        if (msg != null) {
-            val body = msg.body
-            val bodyText = String(body, StandardCharsets.UTF_8)
+        for (message in receiver.receiveMessages(1)) {
+            val body = message.body
+            val bodyText = String(body.toBytes(), StandardCharsets.UTF_8)
             println(bodyText)
-            receiver.completeAsync(msg.lockToken)
+            receiver.complete(message)
         }
     }
 

@@ -41,13 +41,13 @@ object IngressMessageProcessorSpec : Spek({
 
                 // build and run a message
                 val msg = helper.ingressMessage("01-create.json")
-                val egressQueueClient = Connection(registry).egressQueueClient()
-                val processor = IngressSendMessageProcessor(reg, msg, egressQueueClient)
+                val egressSenderClient = Connection(registry).egressSenderClient()
+                val processor = IngressSendMessageProcessor(reg, msg, egressSenderClient)
                 processor.run()
 
                 // verify generated messages
-                val egressReceiverClient = Connection(registry).egressQueueReceiver()
-                val msgs = egressReceiverClient.receiveMessages().collectList().block()
+                val egressReceiverClient = Connection(registry).egressReceiverClient()
+                val msgs = egressReceiverClient.receiveMessages(Integer.MAX_VALUE).toList()
                 assert.that(msgs.size, equalTo(3))
 
                 val checkMsg1 = helper.checkEgressMessage(msgs[0], "01a-submitted.json", substitutions)
@@ -73,16 +73,16 @@ object IngressMessageProcessorSpec : Spek({
 
 
                 val params = mapOf("linearId" to id)
-                val egressQueue = Connection(registry).egressQueueClient()
-                processMsg(reg, "happyPath", "01-create.json", params, egressQueue)
-                processMsg(reg, "happyPath", "02-telemetry.json", params, egressQueue)
-                processMsg(reg, "happyPath", "03-transfer.json", params, egressQueue)
-                processMsg(reg, "happyPath", "04-complete.json", params, egressQueue)
+                val egressSender = Connection(registry).egressSenderClient()
+                processMsg(reg, "happyPath", "01-create.json", params, egressSender)
+                processMsg(reg, "happyPath", "02-telemetry.json", params, egressSender)
+                processMsg(reg, "happyPath", "03-transfer.json", params, egressSender)
+                processMsg(reg, "happyPath", "04-complete.json", params, egressSender)
 
                 val client = reg.retrieve(TransactionBuilderClient::class.java) as FakeTransactionBuilderClient
 
-                val egressReceiverClient = Connection(registry).egressQueueReceiver()
-                val msgs = egressReceiverClient.receiveMessages().collectList().block()
+                val egressReceiverClient = Connection(registry).egressReceiverClient()
+                val msgs = egressReceiverClient.receiveMessages(Integer.MAX_VALUE).toList()
                 assert.that(msgs.size, equalTo(12))
 
             }
@@ -96,13 +96,13 @@ object IngressMessageProcessorSpec : Spek({
 
                 // build and run a message
                 val msg = helper.ingressMessage("01-create.json")
-                val egressQueueClient = Connection(registry).egressQueueClient()
-                val processor = IngressSendMessageProcessor(reg, msg, egressQueueClient)
+                val egressSenderClient = Connection(registry).egressSenderClient()
+                val processor = IngressSendMessageProcessor(reg, msg, egressSenderClient)
                 processor.run()
 
                 // verify generated messages
-                val egressReceiverClient = Connection(registry).egressQueueReceiver()
-                val msgs = egressReceiverClient.receiveMessages().collectList().block()
+                val egressReceiverClient = Connection(registry).egressReceiverClient()
+                val msgs = egressReceiverClient.receiveMessages(Integer.MAX_VALUE).toList()
                 assert.that(msgs.size, equalTo(2))
 
                 val checkMsg1 = helper.checkEgressMessage(msgs[0], "01a-submitted.json", substitutions)

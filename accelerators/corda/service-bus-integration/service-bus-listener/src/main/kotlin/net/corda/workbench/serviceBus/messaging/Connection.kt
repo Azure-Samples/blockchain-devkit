@@ -3,7 +3,7 @@ package net.corda.workbench.serviceBus.messaging
 import com.azure.core.amqp.AmqpRetryOptions
 import com.azure.messaging.servicebus.models.ServiceBusReceiveMode
 import com.azure.messaging.servicebus.ServiceBusClientBuilder
-import com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient
+import com.azure.messaging.servicebus.ServiceBusReceiverClient
 import com.azure.messaging.servicebus.ServiceBusSenderClient
 import net.corda.workbench.commons.registry.Registry
 import java.io.PrintStream
@@ -14,7 +14,7 @@ import java.time.Duration
  */
 class Connection(private val registry: Registry) {
 
-    fun ingressQueueClient(): ServiceBusSenderClient {
+    fun ingressSenderClient(): ServiceBusSenderClient {
         val config = registry.retrieve(AzureConfig::class.java)
         val sendClient = ServiceBusClientBuilder()
             .connectionString(config.endpoint)
@@ -31,7 +31,7 @@ class Connection(private val registry: Registry) {
         return sendClient
     }
 
-    fun egressQueueClient(): ServiceBusSenderClient {
+    fun egressSenderClient(): ServiceBusSenderClient {
         val config = registry.retrieve(AzureConfig::class.java)
         val sendClient = ServiceBusClientBuilder()
             .connectionString(config.endpoint)
@@ -44,14 +44,14 @@ class Connection(private val registry: Registry) {
         return sendClient
     }
 
-    fun ingressQueueReceiver(): ServiceBusReceiverAsyncClient {
+    fun ingressReceiverClient(): ServiceBusReceiverClient {
         val config = registry.retrieve(AzureConfig::class.java)
         val receiver = ServiceBusClientBuilder()
             .connectionString(config.endpoint)
             .receiver()
             .receiveMode(ServiceBusReceiveMode.PEEK_LOCK)
             .queueName(config.ingressQueue)
-            .buildAsyncClient()
+            .buildClient()
 
         val ps = registry.retrieveOrElse(PrintStream::class.java, System.out)
         ps.println("Receiver connected to queue ${config.ingressQueue} using endpoint ${config.endpoint}")
@@ -59,14 +59,14 @@ class Connection(private val registry: Registry) {
         return receiver
     }
 
-    fun egressQueueReceiver(): ServiceBusReceiverAsyncClient {
+    fun egressReceiverClient(): ServiceBusReceiverClient {
         val config = registry.retrieve(AzureConfig::class.java)
         val receiver = ServiceBusClientBuilder()
             .connectionString(config.endpoint)
             .receiver()
             .receiveMode(ServiceBusReceiveMode.PEEK_LOCK)
             .queueName(config.egressQueue)
-            .buildAsyncClient()
+            .buildClient()
 
         val ps = registry.retrieveOrElse(PrintStream::class.java, System.out)
         ps.println("Receiver connected to queue ${config.egressQueue} using endpoint ${config.endpoint}")

@@ -14,14 +14,14 @@ import java.util.*
 /**
  * Build test data and sends to a queue
  */
-class TestDataSender(val queueClient: ServiceBusSenderClient) {
+class TestDataSender(private val sendClient: ServiceBusSenderClient) {
 
     fun sendTransaction(cordapp: String, dataset: String) {
 
         val linearId = UUID.randomUUID();
         println ("Sending messages for $cordapp/$dataset dataset with linearId of $linearId")
 
-        sendMessages(queueClient, cordapp, dataset, linearId)
+        sendMessages(sendClient, cordapp, dataset, linearId)
         println("   Completed dataset/n")
 
     }
@@ -44,7 +44,7 @@ class TestDataSender(val queueClient: ServiceBusSenderClient) {
                 print(".")
 
                 val messageId = UUID.randomUUID().toString()
-                val message = Message(content)
+                val message = ServiceBusMessage(content)
                 message.contentType = "application/json"
                 message.messageId = messageId
                 message.timeToLive = Duration.ofHours(1)
@@ -70,7 +70,7 @@ class TestDataSender(val queueClient: ServiceBusSenderClient) {
 fun main(args: Array<String>) {
     val conf = ConfigFactory.load()
     val registry = Registry().store(AzureConfig(conf))
-    val sendClient = Connection(registry).ingressQueueClient()
+    val sendClient = Connection(registry).ingressSenderClient()
 
     TestDataSender(sendClient).sendTransaction("refrigeratedTransportation", "happyPath")
     TestDataSender(sendClient).sendTransaction("refrigeratedTransportation", "outOfCompliance")
