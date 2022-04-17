@@ -1,7 +1,7 @@
 package net.corda.workbench.serviceBus
 
-import com.microsoft.azure.servicebus.Message
-import com.microsoft.azure.servicebus.QueueClient
+import com.azure.messaging.servicebus.ServiceBusMessage
+import com.azure.messaging.servicebus.ServiceBusSenderClient
 import com.typesafe.config.ConfigFactory
 import net.corda.workbench.commons.registry.Registry
 import net.corda.workbench.serviceBus.messaging.AzureConfig
@@ -14,20 +14,20 @@ import java.util.*
 /**
  * Build test data and sends to a queue
  */
-class TestDataSender(val queueClient: QueueClient) {
+class TestDataSender(private val sendClient: ServiceBusSenderClient) {
 
     fun sendTransaction(cordapp: String, dataset: String) {
 
         val linearId = UUID.randomUUID();
         println ("Sending messages for $cordapp/$dataset dataset with linearId of $linearId")
 
-        sendMessages(queueClient, cordapp, dataset, linearId)
+        sendMessages(sendClient, cordapp, dataset, linearId)
         println("   Completed dataset/n")
 
     }
 
 
-    fun sendMessages(sendClient: QueueClient, cordapp: String, dataset: String, linearId : UUID) {
+    fun sendMessages(sendClient: ServiceBusSenderClient, cordapp: String, dataset: String, linearId : UUID) {
 
         var firstMessage = true
         val directory = "src/test/resources/datasets/$cordapp/$dataset/ingress"
@@ -44,14 +44,13 @@ class TestDataSender(val queueClient: QueueClient) {
                 print(".")
 
                 val messageId = UUID.randomUUID().toString()
-                val message = Message(content)
+                val message = ServiceBusMessage(content)
                 message.contentType = "application/json"
-                message.label = "Corda"
                 message.messageId = messageId
                 message.timeToLive = Duration.ofHours(1)
                 print(".")
 
-                sendClient.send(message)
+                sendClient.sendMessage(message)
                 println(".done")
 
                 if (firstMessage) {
@@ -71,7 +70,7 @@ class TestDataSender(val queueClient: QueueClient) {
 fun main(args: Array<String>) {
     val conf = ConfigFactory.load()
     val registry = Registry().store(AzureConfig(conf))
-    val sendClient = Connection(registry).ingressQueueClient()
+    val sendClient = Connection(registry).ingressSenderClient()
 
     TestDataSender(sendClient).sendTransaction("refrigeratedTransportation", "happyPath")
     TestDataSender(sendClient).sendTransaction("refrigeratedTransportation", "outOfCompliance")

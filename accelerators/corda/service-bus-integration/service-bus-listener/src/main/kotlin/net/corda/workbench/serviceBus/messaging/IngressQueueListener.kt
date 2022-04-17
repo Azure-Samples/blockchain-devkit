@@ -1,6 +1,6 @@
 package net.corda.workbench.serviceBus.messaging
 
-import com.microsoft.azure.servicebus.IMessageReceiver
+import com.azure.messaging.servicebus.ServiceBusReceiverClient
 import java.util.concurrent.CompletableFuture
 import com.typesafe.config.ConfigFactory
 import net.corda.workbench.commons.registry.Registry
@@ -11,15 +11,15 @@ import java.util.concurrent.Executors
 class Listener(private val registry: Registry) {
 
     fun run() {
-        val receiver = Connection(registry).ingressQueueReceiver()
-        val sender = Connection(registry).egressQueueClient()
+        val receiver = Connection(registry).ingressReceiverClient()
+        val sender = Connection(registry).egressSenderClient()
         val factory = MessageProcessorFactory(registry, sender)
         val executor = Executors.newFixedThreadPool(100)
 
         receiveMessagesAsync(receiver, factory, executor)
     }
 
-    fun receiveMessagesAsync(receiver: IMessageReceiver, factory: MessageProcessorFactory, executor: ExecutorService): CompletableFuture<*> {
+    fun receiveMessagesAsync(receiver: ServiceBusReceiverClient, factory: MessageProcessorFactory, executor: ExecutorService): CompletableFuture<*> {
 
         val task: CompletableFuture<Any> = CompletableFuture()
 
@@ -27,8 +27,7 @@ class Listener(private val registry: Registry) {
             CompletableFuture.runAsync {
                 while (!task.isCancelled) {
                     try {
-                        val message = receiver.receive()
-                        if (message != null) {
+                        for (message in receiver.receiveMessages(1)) {
                             println("RECEIVED $message")
 
                             val processor = factory.createProcessor(message)
@@ -40,7 +39,7 @@ class Listener(private val registry: Registry) {
 
                             // respond back to the Azure queue - this message has now been accepted
                             // for processing, and responses will come back on the egress queue
-                            receiver.completeAsync(message.lockToken)
+                            receiver.complete(message)
 
                             // No reason to do anything with the result ?
                             //result.get()

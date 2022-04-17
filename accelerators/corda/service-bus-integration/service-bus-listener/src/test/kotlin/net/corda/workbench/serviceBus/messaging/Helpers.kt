@@ -1,8 +1,8 @@
 package net.corda.workbench.serviceBus.messaging
 
-import com.microsoft.azure.servicebus.IMessage
-import com.microsoft.azure.servicebus.IQueueClient
-import com.microsoft.azure.servicebus.Message
+import com.azure.messaging.servicebus.ServiceBusMessage
+import com.azure.messaging.servicebus.ServiceBusReceivedMessage
+import com.azure.messaging.servicebus.ServiceBusSenderClient
 import com.natpryce.hamkrest.Matcher
 import net.corda.workbench.commons.registry.Registry
 import net.corda.workbench.serviceBus.readFileAsText
@@ -27,27 +27,27 @@ fun loadCordaDataFile(app: String, scenario: String, name: String, substitutions
 
 
 
-fun processMsg(registry: Registry, scenario: String, name: String, substitutions: Map<String, Any?>, returnQueue: IQueueClient = FakeQueueClient()) {
+fun processMsg(registry: Registry, scenario: String, name: String, substitutions: Map<String, Any?>, returnQueue: ServiceBusSenderClient) {
     val json = loadIngressDataFile("refrigeratedTransportation", scenario, name, substitutions)
     //println("Trying: $json")
-    val create = Message(json, "application/json")
-    IngressMessageProcessor(registry, create, returnQueue).run()
+    val create = ServiceBusMessage(json).setContentType("application/json")
+    IngressSendMessageProcessor(registry, create, returnQueue).run()
     //println("done")
 }
 
-fun messageContent(msg: IMessage): Map<String, Any> {
+fun messageContent(msg: ServiceBusMessage): Map<String, Any> {
     val body = msg.body
-    val bodyText = String(body, StandardCharsets.UTF_8)
+    val bodyText = String(body.toBytes(), StandardCharsets.UTF_8)
     return JSONObject(bodyText).toMap()
 }
 
-fun checkMessageContent(app: String, scenario: String, name: String, substitutions: Map<String, Any?>, msg: IMessage): String {
+fun checkMessageContent(app: String, scenario: String, name: String, substitutions: Map<String, Any?>, msg: ServiceBusReceivedMessage): String {
     val json = readFileAsText("src/test/resources/datasets/$app/$scenario/egress/$name", substitutions)
     val expected = JSONObject(json).toMap()
     expected.remove("requestId")
 
     val body = msg.body
-    val bodyText = String(body, StandardCharsets.UTF_8)
+    val bodyText = String(body.toBytes(), StandardCharsets.UTF_8)
     val actual = JSONObject(bodyText).toMap()
     actual.remove("requestId")
 
@@ -107,15 +107,15 @@ class DataSetHelper(val app: String, val scenario: String,
     /**
      * return a message object built from the data in the test file
      */
-    fun ingressMessage(name: String, substitutions: Map<String, Any?> = emptyMap()): IMessage {
+    fun ingressMessage(name: String, substitutions: Map<String, Any?> = emptyMap()): ServiceBusMessage {
         val json = rawIngressMessage(name, substitutions)
-        return Message(json, "application/json")
+        return ServiceBusMessage(json).setContentType("application/json")
     }
 
     /**
      * Check the actual message against the stored expectation file
      */
-    fun checkEgressMessage(actual: IMessage, name: String, substitutions: Map<String, Any?> = emptyMap()): String {
+    fun checkEgressMessage(actual: ServiceBusReceivedMessage, name: String, substitutions: Map<String, Any?> = emptyMap()): String {
         return checkMessageContent(app, scenario, name, merge(substitutions), actual)
     }
 

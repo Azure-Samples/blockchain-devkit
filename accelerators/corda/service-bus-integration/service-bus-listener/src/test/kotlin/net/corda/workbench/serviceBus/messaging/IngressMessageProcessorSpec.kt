@@ -3,6 +3,7 @@ package net.corda.workbench.serviceBus.messaging
 import com.natpryce.hamkrest.assertion.assert
 import com.natpryce.hamkrest.equalTo
 import com.natpryce.hamkrest.isBlank
+import com.typesafe.config.ConfigFactory
 import net.corda.workbench.commons.registry.Registry
 import net.corda.workbench.serviceBus.cordaTransactionBuilder.FakeTransactionBuilderClient
 import net.corda.workbench.serviceBus.cordaTransactionBuilder.TransactionBuilderClient
@@ -26,7 +27,8 @@ object IngressMessageProcessorSpec : Spek({
         val id = UUID.randomUUID().toString()
         val substitutions = mapOf("linearId" to id)
         val helper = DataSetHelper("refrigeratedTransportation", "happyPath", substitutions)
-
+        val conf = ConfigFactory.load()
+        val registry = Registry().store(AzureConfig(conf))
 
         context("Good messages") {
             it("should process a 'create' message") {
@@ -39,12 +41,13 @@ object IngressMessageProcessorSpec : Spek({
 
                 // build and run a message
                 val msg = helper.ingressMessage("01-create.json")
-                val egressQueueClient = FakeQueueClient()
-                val processor = IngressMessageProcessor(reg, msg, egressQueueClient)
+                val egressSenderClient = Connection(registry).egressSenderClient()
+                val processor = IngressSendMessageProcessor(reg, msg, egressSenderClient)
                 processor.run()
 
                 // verify generated messages
-                val msgs = egressQueueClient.messages
+                val egressReceiverClient = Connection(registry).egressReceiverClient()
+                val msgs = egressReceiverClient.receiveMessages(Integer.MAX_VALUE).toList()
                 assert.that(msgs.size, equalTo(3))
 
                 val checkMsg1 = helper.checkEgressMessage(msgs[0], "01a-submitted.json", substitutions)
@@ -70,15 +73,16 @@ object IngressMessageProcessorSpec : Spek({
 
 
                 val params = mapOf("linearId" to id)
-                val egressQueue = FakeQueueClient()
-                processMsg(reg, "happyPath", "01-create.json", params, egressQueue)
-                processMsg(reg, "happyPath", "02-telemetry.json", params, egressQueue)
-                processMsg(reg, "happyPath", "03-transfer.json", params, egressQueue)
-                processMsg(reg, "happyPath", "04-complete.json", params, egressQueue)
+                val egressSender = Connection(registry).egressSenderClient()
+                processMsg(reg, "happyPath", "01-create.json", params, egressSender)
+                processMsg(reg, "happyPath", "02-telemetry.json", params, egressSender)
+                processMsg(reg, "happyPath", "03-transfer.json", params, egressSender)
+                processMsg(reg, "happyPath", "04-complete.json", params, egressSender)
 
                 val client = reg.retrieve(TransactionBuilderClient::class.java) as FakeTransactionBuilderClient
 
-                val msgs = egressQueue.messages
+                val egressReceiverClient = Connection(registry).egressReceiverClient()
+                val msgs = egressReceiverClient.receiveMessages(Integer.MAX_VALUE).toList()
                 assert.that(msgs.size, equalTo(12))
 
             }
@@ -92,12 +96,13 @@ object IngressMessageProcessorSpec : Spek({
 
                 // build and run a message
                 val msg = helper.ingressMessage("01-create.json")
-                val egressQueueClient = FakeQueueClient()
-                val processor = IngressMessageProcessor(reg, msg, egressQueueClient)
+                val egressSenderClient = Connection(registry).egressSenderClient()
+                val processor = IngressSendMessageProcessor(reg, msg, egressSenderClient)
                 processor.run()
 
                 // verify generated messages
-                val msgs = egressQueueClient.messages
+                val egressReceiverClient = Connection(registry).egressReceiverClient()
+                val msgs = egressReceiverClient.receiveMessages(Integer.MAX_VALUE).toList()
                 assert.that(msgs.size, equalTo(2))
 
                 val checkMsg1 = helper.checkEgressMessage(msgs[0], "01a-submitted.json", substitutions)

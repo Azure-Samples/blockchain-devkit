@@ -1,14 +1,14 @@
 package net.corda.workbench.serviceBus.messaging
 
-import com.microsoft.azure.servicebus.IMessage
-import com.microsoft.azure.servicebus.IQueueClient
+import com.azure.messaging.servicebus.ServiceBusSenderClient
+import com.azure.messaging.servicebus.ServiceBusReceivedMessage
 import net.corda.workbench.commons.registry.Registry
 
 
-class MessageProcessorFactory(private val registry: Registry, private val queueClient: IQueueClient) {
+class MessageProcessorFactory(private val registry: Registry, private val queueClient: ServiceBusSenderClient) {
 
-    fun createProcessor(msg: IMessage): IngressMessageProcessor {
-        return IngressMessageProcessor(registry, msg, queueClient)
+    fun createProcessor(msg: ServiceBusReceivedMessage): IngressReceiveMessageProcessor {
+        return IngressReceiveMessageProcessor(registry, msg, queueClient)
     }
 
 }
