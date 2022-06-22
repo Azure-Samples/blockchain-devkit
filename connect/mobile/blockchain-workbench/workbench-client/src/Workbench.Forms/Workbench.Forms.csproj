@@ -8,7 +8,7 @@
     <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.4.118" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.5.0" />
     <PackageReference Include="Microsoft.AppCenter" Version="1.5.0" />
     <PackageReference Include="Microsoft.AppCenter.Distribute" Version="1.5.0" />
